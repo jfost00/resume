@@ -2,6 +2,9 @@
 
 <head>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.17/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.22/addons/p5.dom.js"></script>
+    <meta name="viewport" content="width=device-width" , initial-scale=1/>
     <style>
         body {
             font-family: 'Source Sans Pro', sans-serif;
@@ -12,9 +15,7 @@
             width: 70%;
             align-content: center;
             margin: auto;
-            padding-top: 25px;
-            padding-left: 25px;
-            padding-right: 25px;
+            padding: 25px 25px 25px 25px;
             background-color: white;
         }
         
@@ -35,9 +36,14 @@
             box-shadow: 0px 0px 9px 4px rgba(190, 190, 190, 0.66);
         }
         
-        #bhnlogo {}
+        #canvasHolder {
+            height: 600px;
+            align-content: center;
+            margin: auto;
+            padding: 25px 25px 25px 25px;
+        }
     </style>
-    <meta name="viewport" content="width=device-width" , initial-scale=1/>
+
 
 </head>
 
@@ -105,7 +111,7 @@
         </ul>
         <br/>
         <br/>
-        <a href="http://www.silverlegacyreno.com/"><img id="bhnlogo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN8AAAA2CAMAAABwbLxUAAAAkFBMVEX///8AAAAFAAAEAAC4t7dycXGdnJzn5+fNzMzCwcHy8vKVlJQvLS36+voiICClpKTa2dnLysoSEBCNjIzU09Pt7OyDgYGXlZXi4eFJRkatrKw2NDQlIyMSDg55eHhoZmZbWFiHhoY/Pj4eGBhST08qKCiqqKhiYGBWVFREQUFubW29u7u0srJ+fn5lZGQXFhZIMLdoAAANkUlEQVRoge1a6ZaqSBImRVlNhQIURRRR3C3f/+0mlkwg1Vr6zEzf/tFx7j2FkEt8GXuAZSFl/nqxqMI8wGtXUS4DfelKS+bqEsdY3RODsqcnmWWSm0ZMqdR3TAr0yMBb16tmcfcy2c3WvHQkvc1qYD8W2yjI+msExthbLZiqyJJroSny9VWdW2mprh2cceXrphIGVZm17P8+z3MDX/uw0EDO5gKhup2e9J1F1GJRd67devkIftsDvDsP9YwjPNCcu2pXe4AkhA9LjwX/CK1sIfg2YpoK/rGllSv8IS55wYOZxCaz3N4dZC/t4wsq0e7DFPfnD/jwgL2x4mggCq+dzYyJe3sjWgihd3LkXvEt8BHNF3eUX7zSe9i4LwiQhu1gYYcvxzFqx4l/fJLS4RNbzK3NMz6Z9O/YKNIeJbzvwm2FUhoLML50wsNQND18ioGiPS2GZ5ME53BUSkq4OD5hUQcXHoSSpnN1aBbyimqIl3tSYxagGEesoHD5cQPZP+GzbsK4JaZ9fEOb1pi1NiQvr/iCmjkiBejh08LXv9fqFMhy5palBehofHu0Dm9CoriM0BQQ3+1BPKAe+ju6PNJyLumHEB6Dhcs6stIXfNdSsaF2G7U+A3Xlg9YIuzvhK74pwzselveyj09pvlAqn/N5F+EyrAmfEqD4BCcJlzab0g3vimMQ5NcB4fMnLQ9ew6I09GOI13jsosJNlJiIEJ+avjore637LsZjfE53Z2osQA/UpqBm8trHp09Mnc6MGC+Q5bxCfIEy0DoAUKxesMSWVjvgjGjV4rMZH4ts1D9qsUXlAs9jo6Vnasn1erTZdfjgmWRPIyZRB+ZLfOIIC5wYHxmFaGJ67K9afJHGV9FPcn6txx3DX6kYBBR0/DVFCvIQLBQrTZ/kx/jWegOavoBpGTwg8w16TlXWxw7fDJ307/FF/BQfjEi3tJf02ulz7T8Kst4b2oEolPsK0JXErLHgS89Csx0cny3iS3ysIMIOeIwQQYePtkxHBr6AFfVX+NimHHgQoBmIcmk9k/ZEgkUaknpu+iPyvYogVwwJvCa7T7HrvMCrfmp8CzZ8MKjpAPCNrSd8Mn2D71f2p/Bl8Ccek3q61hMFe43PRpccjGgl8xi27FFPG2SP/ayKV+xLf5Cf0u8DL4QQTHz942n1c9MPgD/gQ2K9q5/hWXGj8LFfzOmwhXkMN17+A/8Qe0BD5VWbm/wJX8rHs+GoRYFC4VtskyTZRia+I104fQa+xDfC+U5GN+zWh/QJw69yyRtQtrSh1c0x2VnFJvyv7ILiH92cZX0BvMGXczgck6KT+Sl8yr3fetO3lk+nWBgJ2vfxoUaWnL7L7hHomWh4Oo6LB6If6xV12YLYa8/T2q347ATwVn4Z+yJBuiL2PXw8v49vcSc74sDzMz7WgohxaIccH5ZAB+LKhexFHEk+ovSVrxSrJ3w3nbcOurxp+NEq9jn6Fp86WxFhiFK51Ht8lO/Z+tZfwaficUKcsVrQdYoeO1QOZInGbQ/YxRnUJtyTuC95DbAKvtNPDr22mC5RPePv8dmDN/v/jC+4d/iiosMHeGwx9DlErYOv8FUa36YLCLLqAF6/lZ9XEL7NDPAV0bf4FErP3P4X8mN85PxkhxXdvNjFAeM7uwrf7hnfVZvzvHczP7Virb7FpwxwjO6F/f5X/sWuOUu//BJfW8sq/eR5DoFAfFALgV/xuJwSEILZ/p79i+Xa7EEb42Czkc7txLf6yQEU/2m/r+LDJfWSseFfKq6AP/rdhG/iwzTyR+w/KciKBT08EAjElwnBNRyz6etc7BmfHPF6p6fbjq5qvpUf5S2ITiXnRv4ZnZY9fHfli8wEI3p8gQ8T+0MVWTr+cRFL8Zrw+cppKTVbc/wbPOs/+iQa0Kqnzi6Wqhb+Hp+na30+azN/yfMevq0/oL9mIPsWnxVlrcwmFDaHD41v3ZnpgOCr/CV5xuezY2vDkgYqZwa+t/op/azuGeozPqS4xacYMOP79/hoxHVHhuWY+MYmPqHzz31v7bf4TjpOtAnBl/KT2631yfvYOrsz8cnZqMvP7mSrZn72jE8+4cvOw5xjOPVtWnyB0fQgvWTf82i7ae7lLb7RSWloiqJBh/seX5DHI8gJWnd3NfERc/4n1JEtPm5UiH0/BX7ClzpS4aNTzm/Fw+UjFINlH9+QvWXnYBJ+NhCfKs7J9egtPkcn+NQXRL/zqp91GG4vezCKq+VqfNLAtwidMDkOsOHY4pOqX9PrV5r4gkOx1PK7OPNwthDoV+bsGeu0hw97EeI0nU4d1SSpVPNSqH4lJCnTt/jAz9Z0eOy3YOfrs/x0c4RKOZXC68ShxctUBtyTovp7xkN7JqLxVdNleD+eSyiLzP4LtrIyvcXNump8GHeZZ3UetaQ6H67sIxjeda9LLIWvtYAMV53MphVrQNb2zxBf1xptfcqxp5AodTXAtmnZo7SG7DfXrdGo3gcP/3g+sNBcAIWw7kFmXaRz5oKHG8Ji4sPRGmupUlDFh9avZg8VONuG75R7lHjp982aff2S3ayOO0b/k45tqYtEXa2ofgmfrtnOXQdyYy6AGNyJxqx5pdYr1WOqCUh9pZGx1pjw6XK9zZuCczeKnbnqMVeu0tkOHwo9Yjnr7NVoz2J/OFDt70Xe9Xu6Fq9jHtjUkjuDSTbrpdkiDlWPKO/kQ+zlTW+YapQH6pXCQp9pW/6hoFHDodACXbFF6aEJ2x1xZ5e6flz7WdRH648oUyuyeTomLsFG4A/CSmRKS5RDKgt6C6jeeyhahLBS4vMyeExyLRQzoPVXuzt/1RNPBW/fxY1pq8DFlQ9I6LLLeBckOJml+qU13605AGLBvu+MPPViai2f99L1+sq8o7uCw7q99Tj5ahD2ZPL2/hjW92tlokJXmo1+rOOG5S6Tql5Nik/1LsubO0xLuXRMUhZnq9oPwN7MAVcpQ31Ny3l8PeUQFBywTdPRQbrm/Hmb7OTOpijLXbEJh9INu1WiubF+tOUSsZgtWT3b7ae9sOtGaRo9v4v8ivyHUO9Y/r+URZ73M1cyiv2bH0fyh3G/J8grxeW3h/HPoeDXJ7AWZk75D6Tg9dYmXN6GP9JVoo/H2i/9efCfott09KpfZKb2D0T5TfzA1sv+x8F/iAZdLvOC72fCXKuofj/+D9ErvkldbUY/0gVj7AyST/n58+A/RJfP/e4Vnx+9Mcr3lP0N0eG/IenG/7tw8S/9S38HpR4R15B8jUlmkMa+H7O5ytT3/ZTeGvFofF0r1cQ4f1kyguHqdoYj2MAzXCXGAOXGsLCMcLbERMuTtDQ8TV99Qc5MUSIW8ZZeAEswz1nMG+Vxu+UTncdIRb0GLCVdjx/gdaqimUzG5yksO6yK1WpV7KHwiWsevZ9aecGDV/cnntJN3axW49pBjhwcQTX1cl+sJqvxHlIEZ7WaW+4RHw2t7NJgx2UKj1dNsR8+sSeTFfP3mVrBkXZsoN6ZNnBRBdZw1Wylla/PsGVznr26T6sUYtWsSiqMIYAwvqyCqwV++JNZPgTO1RjrDw/LcLtpsGxx83EzgRqlmSh8qSotcihdHjQ8pe/OgCYWfyRXLyDph5owwRospy/sVlh2PjyqyFZjWPBDLZMtdecRlmsa4G8T4HdZiAvwzSnaTXHeWgZ73HIMY9av8t8BI25+F9iXEGLnSiD8gA0/iUnWGxdL7yoP3JMQI3w1e3LdaIfNsSy7QeGXq08bI+p7WVRoll6W70tsbV53YnER9pB6MlCjy3C01fgW4gP4usJRPlJrBLzlQXRUL8WwIHZafGHmAhO1i/hS4g/xnSfiGBA+bCXFQXBD9t/hC6h/MEP5lQkWgHio5TGZzx0P3+vQng72uAAffrNV8AddMSBXAccFqS0ChQ97bJF/dfHDGxFC3bxm+a2TeejkVouvOcABZUfEt+E61dFtPxhSXjW+Ka16zhDfDPg7ED5nLwb+DfG5Qn07+C5/AXyj2b2m2kBwU6roPtgcR3SAFpXgJ8Q3ns3WnI/28UnQtqNuFLQf+rkgowgUEV8PJ7ygXUUtvjGU+Y/DxcTH/XFsLKUa334226N+AT5b6TvgW8IyowPii77HR3NEKEl+fpp6uSWDzPeXTo3HOWP5hUp+fALUVu/hs2RxzLR+ovz8ZJtiG243vO2pvxPk/nWaFIhD45u4AGO/6eELu7btztf6SYc+AP+H8rulUJKz/FAlEsSXM77gK/ndk62SH+FLU9y89lz3jtvBmZ7AyRNWlF+S3MWL/LAXwH8jXMRLz5iSb3Taewlg833kukcDXxbVYtJo+4u94b57/6r8DMrvlCQLJT9xi4C/jPBZYDmFtj/f82DZ8Wt9tCNeEzo4UB+IBKsyCI7oPxfUZI8fcHoTPMRI219JzhHFU70kfOh6xQQ/zUzxgG/X6/Uhygivz4v6A9//d/Kz6KNo8J/43XOJm+yeclxlf0O0VMQ3Af6aJeNDudnoP4FbsduhOF/zz4a+BZpTZ1qUZTmghmp6fKBSjDGIxSfkdnL06BUF+Rduisfa5gzKLzjcPg/RiCu8M0IW/QUyMKhvpFwJfkrTuFb0AVviOz9/AbMGq+NzCo/uDfB5IMVM7m3irzygUjn4rCzR77sJxqPyPO3Cw38AbUoA6ZTxb8MAAAAASUVORK5CYII=" height="54" width="233"></a>
+        <a href="http://www.silverlegacyreno.com/"><img id="bhnlogo" src="sllogo.png" height="54" width="233"></a>
         <!--<h3 style="display:inline;"><a href="http://www.silverlegacyreno.com/"><i>SILVER LEGACY RESORT AND CASINO </i></a></h3>-->
         <br/>
         <br/>
@@ -123,6 +129,76 @@
         <p style="display:inline;">In charge of daily cage audits and food & beverage audits</p>
         <br/>
         <br/>
+        <h2 style="display:inline;">Featured Projects: </h2>
+        <br/>
+        <br/>
+        <script type='text/javascript' src='https://public.tableau.com/javascripts/api/viz_v1.js'></script>
+        <div class='tableauPlaceholder' style='width: 70%; height: 742px;'>
+            <noscript>
+                <a href='#'><img alt='Financial Complaints ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;FinancialComplaints&#47;FinancialComplaints&#47;1_rss.png' style='border: none' /></a>
+            </noscript>
+            <object class='tableauViz' width='100%' height='742' style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                <param name='site_root' value='' />
+                <param name='name' value='FinancialComplaints&#47;FinancialComplaints' />
+                <param name='tabs' value='no' />
+                <param name='toolbar' value='yes' />
+                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;FinancialComplaints&#47;FinancialComplaints&#47;1.png' />
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='showVizHome' value='no' />
+                <param name='showTabs' value='y' />
+                <param name='bootstrapWhenNotified' value='true' />
+            </object>
+        </div>
+        <br/>
+        <br/>
+        <h3 style="display:inline;"><a href="http://codepen.io/jbfoster/">Codepen.io Sketches: </a></h3>
+        <br/>
+        <br/>
+        <div id=canvasHolder></div>
+        <script>
+            function setup() {
+                const canvasHolder = select("#canvasHolder")
+                createCanvas(windowWidth * .6, 600).parent('canvasHolder')
+                background(255);
+
+            }
+
+
+            function draw() {
+                stroke(map(hour(), 0, 24, 0, 255), map(minute(), 0, 60, 0, 255), map(second(), 0, 60, 0, 255));
+                line(map(hour(), 0, 24, 0, width), map(minute(), 0, 60, 0, height), map(second(), 0, 60, 60, width - 60), map(second(), 0, 60, height - 60, 60));
+                fill(255 - map(hour(), 0, 24, 0, 255), 255 - map(minute(), 0, 60, 0, 255), 255 - map(second(), 0, 60, 0, 255));
+                textSize(16);
+                textAlign(RIGHT);
+                text("X2 and Y2 second: " + second(), width - 10, height - 20);
+                text("X1 hour: " + hour() + " and Y1 minute: " + minute(), width - 10, height - 40);
+                text(hour() + ":" + minute() + ":" + second(), width - 10, height - 60);
+                textSize(16 + second());
+                text(second(), map(second(), 0, 60, 60, width - 60), map(second(), 0, 60, height - 60, 60) - 10);
+                text(hour(), map(hour(), 0, 24, 0, width), map(minute(), 0, 60, 0, height) + 20);
+                text(minute(), map(hour(), 0, 24, 0, width) + 20 + second(), map(minute(), 0, 60, 0, height) + 10);
+            }
+
+            function windowResized() {
+                resizeCanvas(windowWidth * .6, 600);
+            }
+        </script>
+        <h3 style="display:inline;"><a href="http://rpubs.com/jbfoster">RPubs: </a></h3>
+        <br/>
+        <br/>
+        <iframe src="http://rpubs.com/jbfoster/quandl" style='width: 100%; height: 800px;'></iframe>
+        <br/>
+        <br/>
+        <h3 style="display:inline;"><a href="https://nbviewer.jupyter.org/github/jfost00/IPython/tree/master/">IPython Notebooks: </a></h3>
+        <br/>
+        <br/>
+        <iframe src="https://nbviewer.jupyter.org/github/jfost00/IPython/blob/master/BasicPlot.ipynb" style='width: 100%; height: 800px;'></iframe>
+
     </div>
 </body>
 
