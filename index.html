@@ -1,59 +1,44 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.17/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.22/addons/p5.dom.js"></script>
-    <meta name="viewport" content="width=device-width" , initial-scale=1/>
+    <title>Jeff Foster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- normalize all the css-->
+    <link rel="stylesheet" href="normalize.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.4/p5.min.js"></script>
     <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            background-color: #062332;
+        canvas {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            z-index: -1;
         }
         
-        #wrapper {
-            width: 70%;
-            align-content: center;
-            margin: auto;
-            padding: 25px 25px 25px 25px;
-            background-color: white;
-        }
-        
-        #header {
-            text-align: center;
-            font-weight: normal;
-        }
-        
-        #name>a,
-        h1 {
-            display: inline;
-            text-decoration: none;
-            font-weight: normal;
-            color: black;
-        }
-        
-        #me {
-            box-shadow: 0px 0px 9px 4px rgba(190, 190, 190, 0.66);
-        }
-        
-        #canvasHolder {
-            height: 600px;
-            align-content: center;
-            margin: auto;
-            padding: 25px 25px 25px 25px;
+        .container-fluid {
+            background-color: cadetblue;
+            position: absolute;
+            width: 50%;
+            left: 20px;
+            top: 50%;
         }
     </style>
-
-
 </head>
 
 <body>
-    <div id="wrapper">
 
+    <canvas></canvas>
+    <div class="container-fluid">
         <div id="header">
-            <a href="https://www.linkedin.com/in/jeffreybfoster"><img id="me" style="border-radius: 50%;" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAQqAAAAJDZiNTJmZjEwLWZmMmYtNDk2Yi05MzgwLWNhODkwZDAyNTZmMg.jpg" height="200" width="200"></a>
-            <br/>
-            <br/>
+            <a href="https://www.linkedin.com/in/jeffreybfoster"><img id="me" style="border-radius: 50%;" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAQqAAAAJDZiNTJmZjEwLWZmMmYtNDk2Yi05MzgwLWNhODkwZDAyNTZmMg.jpg" height="200" left="100" width="200"></a>
             <div id="name" style="display:inline;"><a href="https://www.linkedin.com/in/jeffreybfoster"><h1>Jeff Foster, CFE</h1></a></div>
             <h1 style="display:inline; font-weight: normal;">|</h1>
             <h3 style="display:inline; font-weight: normal;"> (775) 287-7967</h3>
@@ -68,146 +53,45 @@
             <br/>
             <br/>
         </div>
-        <h2 style="display:inline;">Summary: </h2>
-        <br/>
-        <br/>
-
-        <p style="display:inline;">I am passionate about finding answers to problems using data and analytics.</p>
-        <br/>
-        <br/>
-        <h2 style="display:inline;">Education: </h2>
-        <br/>
-        <br/>
-
-        <h4 style="display:inline;"><i>BS in Accounting minoring in Economic Policy, University of Nevada, Reno 2007-2012</i></h4>
-        <br/>
-        <br/>
-        <h2 style="display:inline;">Experience: </h2>
-        <br/>
-        <br/>
-        <br/>
-        <a href="https://blackhawknetwork.com/"><img id="bhnlogo" src="https://blackhawknetwork.com/wp-content/uploads/2014/01/logo_blackahawk_network1.png" height="75" width="296"></a>
-        <!--<h3><a href="https://blackhawknetwork.com/"><i>BLACKHAWK NETWORK HOLDINGS, INC </i></a></h3>-->
-        <br/>
-        <h4 style="display:inline;"><i> March - 2013 to Present</i></h4>
-        <h3>Business Analyst</h3>
-        <ul>
-            <li>Indepth SQL analysis to provide insight to the team and partners that give recommendation and guidance on best practices</li>
-            <li>Provide key performance indicators to senior management and prepare reports for board meetings</li>
-            <li>Work closely with business intelligence and product development teams to develop best practices including statistical modeling for monitoring accounts and transactions</li>
-            <li>Fulfill reporting requirements of Canada, UK, and Mexico divisions</li>
-        </ul>
-        <h3>Fraud Analyst II</h3>
-        <ul>
-            <li>Review of OFAC and other BSA compliance regulations including state audits</li>
-            <li>Review of ACH transactions</li>
-            <li>Investigation of large complex cases working with local law enforcement and government agencies</li>
-        </ul>
-        <h3>Fraud Analyst I</h3>
-        <ul>
-            <li>Managing calls with victims and suspects </li>
-            <li>Investigating cases including ID theft, fraud, and money laundering</li>
-            <li>Fulfillment of levies, garnishments, and subpoenas</li>
-        </ul>
-        <br/>
-        <br/>
-        <a href="http://www.silverlegacyreno.com/"><img id="bhnlogo" src="http://www.silverlegacyreno.com/styles/build/images/sl-logo.png" height="54" width="233"></a>
-        <!--<h3 style="display:inline;"><a href="http://www.silverlegacyreno.com/"><i>SILVER LEGACY RESORT AND CASINO </i></a></h3>-->
-        <br/>
-        <br/>
-        <h4 style="display:inline;"><i> September - 2011 to March - 2013</i></h4>
-        <h3>Managerial Accountant</h3>
-        <ul>
-            <li>Develop profit and loss statements for all gaming divisions including slots, table games, and food & beverage</li>
-            <li>Prepare special reports for significant events</li>
-        </ul>
-        <h3 style="display:inline;">Surveillance Auditor: </h3>
-        <p style="display:inline;">Review surveillance for cash skimming and embezzlement activity</p>
-        <br/>
-        <br/>
-        <h3 style="display:inline;">Auditor: </h3>
-        <p style="display:inline;">In charge of daily cage audits and food & beverage audits</p>
-        <br/>
-        <br/>
-        <h2 style="display:inline;">Featured Projects: </h2>
-        <br/>
-        <br/>
-        <h3 style="display:inline;"><a href="https://public.tableau.com/profile/jeff3782#!/">Tableau Public: </a></h3>
-        <br/>
-        <br/>
-        <script type='text/javascript' src='https://public.tableau.com/javascripts/api/viz_v1.js'></script>
-        <div class='tableauPlaceholder' style='width: 70%; height: 742px;'>
-            <noscript>
-                <a href='#'><img alt='Financial Complaints ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;FinancialComplaints&#47;FinancialComplaints&#47;1_rss.png' style='border: none' /></a>
-            </noscript>
-            <object class='tableauViz' width='100%' height='742' style='display:none;'>
-                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                <param name='site_root' value='' />
-                <param name='name' value='FinancialComplaints&#47;FinancialComplaints' />
-                <param name='tabs' value='no' />
-                <param name='toolbar' value='yes' />
-                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fi&#47;FinancialComplaints&#47;FinancialComplaints&#47;1.png' />
-                <param name='animate_transition' value='yes' />
-                <param name='display_static_image' value='yes' />
-                <param name='display_spinner' value='yes' />
-                <param name='display_overlay' value='yes' />
-                <param name='display_count' value='yes' />
-                <param name='showVizHome' value='no' />
-                <param name='showTabs' value='y' />
-                <param name='bootstrapWhenNotified' value='true' />
-            </object>
-        </div>
-        <br/>
-        <br/>
-        <h3 style="display:inline;"><a href="http://codepen.io/jbfoster/">Codepen.io Sketches: </a></h3>
-        <br/>
-        <br/>
-        <div id=canvasHolder></div>
-        <script>
-            function setup() {
-                const canvasHolder = select("#canvasHolder")
-                createCanvas(windowWidth * .6, 600).parent('canvasHolder')
-                background(255);
-
-            }
-
-
-            function draw() {
-                stroke(map(hour(), 0, 24, 0, 255), map(minute(), 0, 60, 0, 255), map(second(), 0, 60, 0, 255));
-                line(map(hour(), 0, 24, 0, width), map(minute(), 0, 60, 0, height), map(second(), 0, 60, 60, width - 60), map(second(), 0, 60, height - 60, 60));
-                fill(255 - map(hour(), 0, 24, 0, 255), 255 - map(minute(), 0, 60, 0, 255), 255 - map(second(), 0, 60, 0, 255));
-                textSize(16);
-                textAlign(RIGHT);
-                text("X2 and Y2 second: " + second(), width - 10, height - 20);
-                text("X1 hour: " + hour() + " and Y1 minute: " + minute(), width - 10, height - 40);
-                text(hour() + ":" + minute() + ":" + second(), width - 10, height - 60);
-                textSize(16 + second());
-                text(second(), map(second(), 0, 60, 60, width - 60), map(second(), 0, 60, height - 60, 60) - 10);
-                text(hour(), map(hour(), 0, 24, 0, width), map(minute(), 0, 60, 0, height) + 20);
-                text(minute(), map(hour(), 0, 24, 0, width) + 20 + second(), map(minute(), 0, 60, 0, height) + 10);
-            }
-
-            function windowResized() {
-                resizeCanvas(windowWidth * .6, 600);
-            }
-        </script>
-        <h3 style="display:inline;"><a href="http://rpubs.com/jbfoster">RPubs: </a></h3>
-        <br/>
-        <br/>
-        <iframe src="http://rpubs.com/jbfoster/quandl" style='width: 100%; height: 800px;'></iframe>
-        <br/>
-        <br/>
-        <h3 style="display:inline;"><a href="https://nbviewer.jupyter.org/github/jfost00/IPython/tree/master/">IPython Notebooks: </a></h3>
-        <br/>
-        <br/>
-        <iframe src="https://nbviewer.jupyter.org/github/jfost00/IPython/blob/master/BasicPlot.ipynb" style='width: 100%; height: 800px;'></iframe>
-        <br/>
-        <br/>
-        <h3 style="display:inline;"><a href="https://github.com/jfost00/QuandlApp">Shiny App Using Quandl API</a></h3>
-        <br/>
-        <br/>
-        <iframe style='width: 100%; height: 800px;' src="https://www.youtube.com/embed/eCXyd_3sspE?autoplay=1&loop=1&playlist=eCXyd_3sspE" frameborder="0" allowfullscreen></iframe>
     </div>
+
+    <script>
+        var canvas;
+
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+        }
+
+        function setup() {
+            canvas = createCanvas(windowWidth, windowHeight);
+            smooth();
+            //canvas.position(0, 0);
+
+
+
+        }
+
+        function draw() {
+            var r = map(mouseX, 0, windowWidth, 0, 255);
+            var g = map(mouseY, 0, windowHeight, 255, 0);
+            var b = map(mouseX, 0, windowWidth, 255, 0);
+            background(255 - r, 255 - g, 255 - b);
+            //                stroke(0);
+            //                fill(0);
+            //                textSize(64);
+            //                text(mouseX, mouseX + 20, mouseY + 20)
+
+            for (var i = 0; i < windowWidth; i += windowWidth / 20) {
+                for (var j = 0; j < 200; j += 200 / 10) {
+                    stroke(r, g, b);
+                    line(i, j, j + windowWidth, i);
+                    //line(j, i, i, j);
+                }
+            }
+
+
+        }
+    </script>
 </body>
 
 </html>
