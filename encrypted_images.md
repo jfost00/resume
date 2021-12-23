@@ -58,7 +58,7 @@ Final Red Values
 
 But since a meme is easily recognizable it is easier to tell if the colors are
 slightly off unless the message is relatively small (300 to 600 characters would
-be the first two rows of pixels.) To get combat this, it is possible to create 
+be the first two rows of pixels.) To combat this, it is possible to create 
 a number of random walkers, an agent that has the same probability of moving in
 any direction, with random color assignments to generate an abstract image. Using 
 an abstract image it is very hard to notice if any pixels have been updated with 
